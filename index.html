@@ -2,29 +2,55 @@
 <html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="stylesheet" href="./style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
-    <h3>カメラ画像取得</h3>
-    <div class="flex-row">
-        <div class="camera">
-            <video id="video"></video>
-            <div id="shoot">写真撮影</div>
-            <div id="recode-start">録画開始</div>
-            <div id="recode-stop" class="hidd">録画停止</div>
-        </div>
-        <div class="photo">
-            <img id="photo">
-            <p class="ret-element">写真</p>
-        </div>
-        <div class="movie">
-            <video id="movie" controls playsinline></video>
-            <p class="ret-element">動画</p>
-        </div>
+  <div class="wrapper">
+    <div class="camera-wrapper">
+      <div class="camera">
+        <input type="text" inputmode="numeric" pattern="\d*" class="fps" value="500" onchange="window.intervalSec = this.value">
+        <video id="video"></video>
+        <div id="player" class="hidd"></div>
+      </div>
+      <div class="controls">
+        <button type="button" id="reset">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9.97913 12.4645H3.97913V6.46448" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M8.22183 23.7782C9.7602 25.3166 11.7202 26.3642 13.854 26.7886C15.9878 27.2131 18.1995 26.9952 20.2095 26.1627C22.2195 25.3301 23.9375 23.9202 25.1462 22.1113C26.3549 20.3023 27 18.1756 27 16C27 13.8244 26.3549 11.6977 25.1462 9.88873C23.9375 8.07979 22.2195 6.66989 20.2095 5.83733C18.1995 5.00477 15.9878 4.78693 13.854 5.21137C11.7202 5.6358 9.7602 6.68345 8.22183 8.22183L3.97919 12.4645" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <button type="button" id="shoot">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 28C22.6274 28 28 22.6274 28 16C28 9.37258 22.6274 4 16 4C9.37258 4 4 9.37258 4 16C4 22.6274 9.37258 28 16 28Z" stroke-width="2" stroke-miterlimit="10"/>
+            <path d="M16 24C20.4183 24 24 20.4183 24 16C24 11.5817 20.4183 8 16 8C11.5817 8 8 11.5817 8 16C8 20.4183 11.5817 24 16 24Z" stroke-width="2" stroke-miterlimit="10"/>
+          </svg>
+        </button>
+        <button type="button" id="preview">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16 28C22.6274 28 28 22.6274 28 16C28 9.37258 22.6274 4 16 4C9.37258 4 4 9.37258 4 16C4 22.6274 9.37258 28 16 28Z" stroke-width="2" stroke-miterlimit="10"/>
+          <path d="M20 16L14 12V20L20 16Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <button type="button" id="pause" class="hidd">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16 28C22.6274 28 28 22.6274 28 16C28 9.37258 22.6274 4 16 4C9.37258 4 4 9.37258 4 16C4 22.6274 9.37258 28 16 28Z" stroke-width="2" stroke-miterlimit="10"/>
+          <path d="M13 12V20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M19 12V20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <button type="button" id="stop" class="hidd">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16 28C22.6274 28 28 22.6274 28 16C28 9.37258 22.6274 4 16 4C9.37258 4 4 9.37258 4 16C4 22.6274 9.37258 28 16 28Z" stroke-width="2" stroke-miterlimit="10"/>
+          <path d="M19 13H13V19H19V13Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
     </div>
+    <div id="sequence" class="sequence"></div>
+  </div>
 </body>
 
 <script src="script.js"></script>
