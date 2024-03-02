@@ -7,6 +7,8 @@ const canvas = document.createElement('canvas');
 let mediaRecorder;
 let photoIndex = 0;
 
+let audioElm = new Audio('shutter-sound.mp3');
+
 initVideoCamera();
 initPhoto();
 const shootButton = document.querySelector('#shoot');
@@ -63,6 +65,9 @@ function addFrame() {
  * 写真の撮影描画
  */
 function photoShoot() {
+  audioElm.pause();
+  audioElm.currentTime = 0;
+  audioElm.play();
   let drawSize = calcDrawSize();
   canvas.width = drawSize.width;
   canvas.height = drawSize.height;
